@@ -109,7 +109,8 @@ sub getIdentifier{
 		#short form
 		my @fields = unpack('(A8)*',$line);
 		$card = $fields[0];
-		$ID = $fields[1];
+		$fields[1] =~ m/(\d+)/;
+		$ID = $1;
 	}
 	return $card.(" "x(8-length($card))).$ID;
 }
